@@ -21,11 +21,8 @@ public enum Option {
         final String[] values = value.split(",");
         return Arrays.stream(values)
                 .map(String::trim)
-                .map(v ->
-                v.isEmpty() ?
-                        UNDEFINED :
-                        Arrays.stream(Option.values())
-                                .filter(o -> o.value == value.charAt(0)).
-                                findFirst().orElse(UNDEFINED)).collect(Collectors.toList());
+                .map(String::toUpperCase)
+                .map(Option::valueOf)
+                .collect(Collectors.toList());
     }
 }
