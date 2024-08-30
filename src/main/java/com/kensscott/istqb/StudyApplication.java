@@ -9,7 +9,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StudyApplication {
 
@@ -19,44 +21,52 @@ public class StudyApplication {
         try {
             Exam exam = app.startTest(app.readExams());
             if (exam != null) {
-                processTest(exam);
+                app.processTest(exam);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-//        int questions = a.getAnswers().size();
-//        for (int index = 0; index < questions; index++) {
-//            System.out.printf("Answer for question %d:%n", index + 1);
-//            guesses.add(reader.readLine());
-//        };
-//
-//        int correct = 0;
-//        for (int index = 0; index < questions; index++) {
-//            if (a.getAnswers().get(index).equals(guesses.get(index))) {
-//                correct++;
-//            }
-//        }
-//        System.out.printf("Score = %d / %d (%02f)%n", correct, questions, (correct * 1f / questions) * 100.0);
     }
 
     private List<Exam> readExams() {
         final Yaml yaml = new Yaml();
-        InputStream fis = StudyApplication.class.getClassLoader().getResourceAsStream("exams.yml");
+        InputStream fis = StudyApplication.class.getClassLoader().getResourceAsStream("exams-test.yml");
         List<Map<String, Object>> raw = yaml.load(fis);
         return mapToExams(raw);
     }
 
-    private void processTest(Exam exam) {
+    private void processTest(Exam exam) throws IOException {
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        final Result result = new Result();
         System.out.println("Taking test " + exam.getName() + ". Press Enter key to begin...");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        final long start = System.currentTimeMillis();
+        reader.readLine();
+        result.start();
         exam.getQuestions().forEach(question -> {
-
+            int optionLimit = question.getAnswers().size();
+            IntStream.range(0, optionLimit).forEach(index -> {
+                final String which = ((index == 0) ? "first" : "second");
+                System.out.println("Enter "
+                        + (optionLimit == 0 ? "" : which)
+                        + " selection for question "
+                        + question.getId()
+                        + ": ");
+                try {
+                    final String response = reader.readLine().trim().toUpperCase();
+                    if (!response.isEmpty()) {
+                        question.getGuessed().add(Option.valueOf(response));
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            Set<Option> intersection = question.getAnswers().stream()
+                    .distinct()
+                    .filter(question.getGuessed()::contains)
+                    .collect(Collectors.toSet());
+            question.setPass(intersection.size() == question.getAnswers().size());
         });
-        final long duration = System.currentTimeMillis() - start;
-
-
+        result.stop();
     }
 
     private Exam startTest(List<Exam> exams) throws IOException {
