@@ -21,7 +21,8 @@ public class StudyApplication {
         try {
             Exam exam = app.startTest(app.readExams());
             if (exam != null) {
-                app.processTest(exam);
+                final Result result = app.processTest(exam);
+                System.out.println(result);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -36,37 +37,33 @@ public class StudyApplication {
         return mapToExams(raw);
     }
 
-    private void processTest(Exam exam) throws IOException {
+    private Result processTest(Exam exam) throws IOException {
         final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        final Result result = new Result();
+        final Result result = new Result(exam);
         System.out.println("Taking test " + exam.getName() + ". Press Enter key to begin...");
         reader.readLine();
         result.start();
         exam.getQuestions().forEach(question -> {
             int optionLimit = question.getAnswers().size();
             IntStream.range(0, optionLimit).forEach(index -> {
-                final String which = ((index == 0) ? "first" : "second");
-                System.out.println("Enter "
-                        + (optionLimit == 0 ? "" : which)
-                        + " selection for question "
+                final String which = ((index == 0) ? "first " : "second ");
+                System.out.print("Enter "
+                        + ((optionLimit == 1) ? "" : which)
+                        + "selection for question "
                         + question.getId()
                         + ": ");
                 try {
                     final String response = reader.readLine().trim().toUpperCase();
                     if (!response.isEmpty()) {
-                        question.getGuessed().add(Option.valueOf(response));
+                        result.recordSelection(question.getId(), Option.valueOf(response));
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             });
-            Set<Option> intersection = question.getAnswers().stream()
-                    .distinct()
-                    .filter(question.getGuessed()::contains)
-                    .collect(Collectors.toSet());
-            question.setPass(intersection.size() == question.getAnswers().size());
         });
         result.stop();
+        return result;
     }
 
     private Exam startTest(List<Exam> exams) throws IOException {

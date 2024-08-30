@@ -8,6 +8,7 @@
        level: K2
        answers:
          - b
+         - c
      - id: 3
        level: K2
        answers:
@@ -16,3 +17,4 @@
        level: K2
        answers:
         - d
+        - e

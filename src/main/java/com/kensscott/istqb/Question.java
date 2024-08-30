@@ -12,6 +12,17 @@ public class Question {
     private final int id;
     private final String level;
     private final List<Option> answers;
-    private List<Option> guessed = new ArrayList<>();
-    private boolean pass = false;
+    private final List<Option> guessed = new ArrayList<>();
+
+
+    public boolean isPassed() {
+        boolean result = answers.size() == guessed.size();
+        if (result) {
+            for (Option answer : answers) {
+                result = guessed.contains(answer);
+                if (!result) break;
+            }
+        }
+        return result;
+    }
 }
