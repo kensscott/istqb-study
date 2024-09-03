@@ -32,8 +32,8 @@ public class Result {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Exam result\n");
 
-        int passed = 0;
-        int failed = 0;
+        float passed = 0;
+        float failed = 0;
         for (final Question question : questions) {
             if (question.isPassed()) passed++;
             if (!question.isPassed()) failed++;
@@ -43,12 +43,13 @@ public class Result {
             final String guessedAnswers = question.getGuessed().stream()
                     .map(Option::toString)
                     .collect(joining(","));
-            sb.append("Correct anwer(s): ")
-                    .append(correctAnswers)
-                    .append(" Guessed answer(s): ")
-                    .append(guessedAnswers)
+            sb.append("Question ")
+                    .append(question.getId())
+                    .append(": ")
+                    .append(question.isPassed() ? "PASS" : "INCORRECT")
                     .append("\n");
         }
+        sb.append("Total correct: ").append(passed).append(" / ").append(passed + failed).append(" = ").append(passed / (passed + failed) * 100).append("%\n");
 
         return sb.toString();
     }

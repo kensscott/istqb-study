@@ -17,6 +17,15 @@ public enum Option {
         this.value = this.name().charAt(0);
     }
 
+    public static Option valueOf(final char value) {
+        for (Option opt : List.of(values())) {
+            if (opt.value == value) {
+                return opt;
+            }
+        }
+        return UNDEFINED;
+    }
+
     public static List<Option> fromString(final String value) {
         final String[] values = value.split(",");
         return Arrays.stream(values)

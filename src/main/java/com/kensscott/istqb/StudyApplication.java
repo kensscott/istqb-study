@@ -2,10 +2,7 @@ package com.kensscott.istqb;
 
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +19,9 @@ public class StudyApplication {
             Exam exam = app.startTest(app.readExams());
             if (exam != null) {
                 final Result result = app.processTest(exam);
-                System.out.println(result);
+                final BufferedWriter out = new BufferedWriter(new FileWriter("result.txt", false));
+                out.write(result.toString());
+                out.close();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -55,7 +54,7 @@ public class StudyApplication {
                 try {
                     final String response = reader.readLine().trim().toUpperCase();
                     if (!response.isEmpty()) {
-                        result.recordSelection(question.getId(), Option.valueOf(response));
+                        result.recordSelection(question.getId(), Option.valueOf(response.charAt(0)));
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
