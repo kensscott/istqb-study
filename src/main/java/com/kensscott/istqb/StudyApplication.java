@@ -3,6 +3,8 @@ package com.kensscott.istqb;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,14 +14,21 @@ import java.util.stream.IntStream;
 
 public class StudyApplication {
 
+    private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+
     public static void main(String[] args) {
 
         final StudyApplication app = new StudyApplication();
         try {
-            Exam exam = app.startTest(app.readExams());
+            final Exam exam = app.startTest(app.readExams());
             if (exam != null) {
+                final String resultFile = "result-exam"
+                        + exam.getName()
+                        + "-"
+                        + sdf1.format(new Timestamp(System.currentTimeMillis()))
+                        + ".txt";
                 final Result result = app.processTest(exam);
-                final BufferedWriter out = new BufferedWriter(new FileWriter("result.txt", false));
+                final BufferedWriter out = new BufferedWriter(new FileWriter(resultFile));
                 out.write(result.toString());
                 out.close();
             }
@@ -31,7 +40,7 @@ public class StudyApplication {
 
     private List<Exam> readExams() {
         final Yaml yaml = new Yaml();
-        InputStream fis = StudyApplication.class.getClassLoader().getResourceAsStream("exams-test.yml");
+        InputStream fis = StudyApplication.class.getClassLoader().getResourceAsStream("exams.yml");
         List<Map<String, Object>> raw = yaml.load(fis);
         return mapToExams(raw);
     }
