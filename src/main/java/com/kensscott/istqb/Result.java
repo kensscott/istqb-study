@@ -10,9 +10,11 @@ public class Result {
 
     private long start;
     private long end;
+    private Exam exam;
     private final List<Question> questions;
 
     public Result(final Exam exam) {
+        this.exam = exam;
         this.questions = new ArrayList<>(exam.getQuestions());
     }
 
@@ -30,7 +32,7 @@ public class Result {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Exam result\n");
+        final StringBuilder sb = new StringBuilder("Exam " + exam.getName() + " result\n");
 
         float passed = 0;
         float failed = 0;
@@ -47,6 +49,9 @@ public class Result {
                     .append(question.getId())
                     .append(": ")
                     .append(question.isPassed() ? "PASS" : "INCORRECT")
+                    .append(question.getGuessed())
+                    .append(" guessed. Correct answers: ")
+                    .append(question.getAnswers())
                     .append("\n");
         }
         sb.append("Total correct: ").append(passed).append(" / ").append(passed + failed).append(" = ").append(passed / (passed + failed) * 100).append("%\n");
