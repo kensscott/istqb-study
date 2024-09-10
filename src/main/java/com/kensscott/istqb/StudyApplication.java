@@ -40,7 +40,7 @@ public class StudyApplication {
 
     private List<Exam> readExams() {
         final Yaml yaml = new Yaml();
-        InputStream fis = StudyApplication.class.getClassLoader().getResourceAsStream("exams-test.yml");
+        InputStream fis = StudyApplication.class.getClassLoader().getResourceAsStream("exams.yml");
         List<Map<String, Object>> raw = yaml.load(fis);
         return mapToExams(raw);
     }

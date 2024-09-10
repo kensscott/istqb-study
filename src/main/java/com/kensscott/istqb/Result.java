@@ -2,7 +2,6 @@ package com.kensscott.istqb;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -32,7 +31,7 @@ public class Result {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Exam " + exam.getName() + " result\n");
+        final StringBuilder sb = new StringBuilder("Exam " + exam.getName() + " result in time " + \n");
 
         float passed = 0;
         float failed = 0;
@@ -57,5 +56,9 @@ public class Result {
         sb.append("Total correct: ").append(passed).append(" / ").append(passed + failed).append(" = ").append(passed / (passed + failed) * 100).append("%\n");
 
         return sb.toString();
+    }
+
+    private String timeTaken() {
+        Duration.of(this.end - this.start, TemporalUnit.)
     }
 }
