@@ -1,5 +1,7 @@
 package com.kensscott.istqb;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,34 +33,38 @@ public class Result {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Exam " + exam.getName() + " result in time " + \n");
+        final String lineTemplate = "Question %02d: %-10s  (%-10s) %s\n";
+        final StringBuilder sb = new StringBuilder("Exam " + exam.getName() + "\n");
 
         float passed = 0;
         float failed = 0;
         for (final Question question : questions) {
             if (question.isPassed()) passed++;
             if (!question.isPassed()) failed++;
-            final String correctAnswers = question.getAnswers().stream()
-                    .map(Option::toString)
-                    .collect(joining(","));
-            final String guessedAnswers = question.getGuessed().stream()
-                    .map(Option::toString)
-                    .collect(joining(","));
-            sb.append("Question ")
-                    .append(question.getId())
-                    .append(": ")
-                    .append(question.isPassed() ? "PASS" : "INCORRECT")
-                    .append(question.getGuessed())
-                    .append(" guessed. Correct answers: ")
-                    .append(question.getAnswers())
-                    .append("\n");
+            sb.append(String.format(lineTemplate,
+                            question.getId(),
+                            question.getGuessed(),
+                            question.getAnswers(),
+                            question.isPassed() ? "PASS" : "INCORRECT"));
         }
-        sb.append("Total correct: ").append(passed).append(" / ").append(passed + failed).append(" = ").append(passed / (passed + failed) * 100).append("%\n");
+        sb.append("Total correct: ")
+                .append(passed)
+                .append(" / ")
+                .append(passed + failed)
+                .append(" = ")
+                .append(passed / (passed + failed) * 100)
+                .append("%\n")
+                .append("Time taken: ")
+                .append(timeTaken());
 
         return sb.toString();
     }
 
     private String timeTaken() {
-        Duration.of(this.end - this.start, TemporalUnit.)
+        final Duration duration = Duration.of(this.end - this.start, ChronoUnit.MILLIS);
+        return duration.toString()
+                .substring(2)
+                .replaceAll("(\\d[HMS])(?!$)", "$1 ")
+                .toLowerCase();
     }
 }
