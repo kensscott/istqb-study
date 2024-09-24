@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -17,12 +16,16 @@ public class StudyApplication {
     private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
     public static void main(String[] args) {
-
+        if (args.length > 1) throw new RuntimeException("Invalid args");
+        String style = args.length == 1 ? args[0] : "istqb";
+        System.out.println(style);
         final StudyApplication app = new StudyApplication();
         try {
-            final Exam exam = app.startTest(app.readExams());
+            final Exam exam = app.startTest(app.readExams(style));
             if (exam != null) {
-                final String resultFile = "result-exam"
+                final String resultFile = "result"
+                        + style
+                        + "-exam-"
                         + exam.getName()
                         + "-"
                         + sdf1.format(new Timestamp(System.currentTimeMillis()))
@@ -38,9 +41,10 @@ public class StudyApplication {
 
     }
 
-    private List<Exam> readExams() {
+    private List<Exam> readExams(final String style) {
+        final String resourceName = "exams-" + style + ".yml";
         final Yaml yaml = new Yaml();
-        InputStream fis = StudyApplication.class.getClassLoader().getResourceAsStream("exams.yml");
+        InputStream fis = StudyApplication.class.getClassLoader().getResourceAsStream(resourceName);
         List<Map<String, Object>> raw = yaml.load(fis);
         return mapToExams(raw);
     }
@@ -78,7 +82,8 @@ public class StudyApplication {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         boolean quit = false;
         while (!quit) {
-            System.out.print("Select an exam to take. (A, B, C, D) or X to exit -> ");
+            exams.forEach(exam -> System.out.println(exam.getName()));
+            System.out.print("Select an exam to take. X to exit -> ");
             final String response = reader.readLine().trim().toLowerCase();
             if (response.equals("x")) {
                 System.out.println("\nQuitting");

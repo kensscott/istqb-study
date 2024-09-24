@@ -5,13 +5,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.stream.Collectors.*;
-
 public class Result {
 
     private long start;
     private long end;
-    private Exam exam;
+    private final Exam exam;
     private final List<Question> questions;
 
     public Result(final Exam exam) {

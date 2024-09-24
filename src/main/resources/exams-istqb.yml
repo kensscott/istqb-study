@@ -1,655 +1,495 @@
 -  name: A
    questions:
      - id: 1
-       level: K1
        answers:
          - c
      - id: 2
-       level: K2
        answers:
          - a
      - id: 3
-       level: K2
        answers:
          - a
      - id: 4
-       level: K2
        answers:
         - b
      - id: 5
-       level: K2
        answers:
          - b
      - id: 6
-       level: K2
        answers:
          - a
          - e
      - id: 7
-       level: K2
        answers:
          - b
      - id: 8
-       level: K1
        answers:
          - d
      - id: 9
-       level: K1
        answers:
          - d
      - id: 10
-       level: K1
        answers:
          - c
      - id: 11
-       level: K2
        answers:
          - d
      - id: 12
-       level: K2
        answers:
          - c
      - id: 13
-       level: K2
        answers:
          - a
      - id: 14
-       level: K2
        answers:
          - b
      - id: 15
-       level: K2
        answers:
          - a
      - id: 16
-       level: K1
        answers:
          - d
      - id: 17
-       level: K2
        answers:
          - b
      - id: 18
-       level: K1
        answers:
          - d
      - id: 19
-       level: K2
        answers:
          - c
      - id: 20
-       level: K3
        answers:
          - b
      - id: 21
-       level: K3
        answers:
           - a
      - id: 22
-       level: K3
        answers:
          - d
      - id: 23
-       level: K3
        answers:
          - d
      - id: 24
-       level: K2
        answers:
          - a
      - id: 25
-       level: K2
        answers:
          - d
      - id: 26
-       level: K2
        answers:
          - a
      - id: 27
-       level: K2
        answers:
          - c
      - id: 28
-       level: K2
        answers:
          - b
      - id: 29
-       level: K3
        answers:
          - a
      - id: 30
-       level: K1
        answers:
          - c
      - id: 31
-       level: K2
        answers:
          - c
          - e
      - id: 32
-       level: K3
        answers:
          - d
      - id: 33
-       level: K3
        answers:
          - a
      - id: 34
-       level: K2
        answers:
          - a
      - id: 35
-       level: K2
        answers:
          - c
      - id: 36
-       level: K2
        answers:
          - d
      - id: 37
-       level: K2
        answers:
          - c
      - id: 38
-       level: K3
        answers:
          - c
      - id: 39
-       level: K2
        answers:
          - c
      - id: 40
-       level: K1
        answers:
          - b
 - name: B
   questions:
     - id: 1
-      level: K2
       answers:
         - d
     - id: 2
-      level: K1
       answers:
         - b
     - id: 3
-      level: K2
       answers:
         - d
     - id: 4
-      level: K2
       answers:
         - a
     - id: 5
-      level: K2
       answers:
         - c
     - id: 6
-      level: K2
       answers:
         - b
     - id: 7
-      level: K2
       answers:
         - b
     - id: 8
-      level: K1
       answers:
         - d
     - id: 9
-      level: K2
       answers:
         - b
     - id: 10
-      level: K1
       answers:
         - b
     - id: 11
-      level: K1
       answers:
         - a
     - id: 12
-      level: K2
       answers:
         - b
     - id: 13
-      level: K2
       answers:
         - a
     - id: 14
-      level: K2
       answers:
         - d
     - id: 15
-      level: K2
       answers:
         - b
     - id: 16
-      level: K1
       answers:
         - c
     - id: 17
-      level: K2
       answers:
         - d
     - id: 18
-      level: K1
       answers:
         - c
     - id: 19
-      level: K2
       answers:
         - d
     - id: 20
-      level: K3
       answers:
         - a
     - id: 21
-      level: K3
       answers:
         - d
     - id: 22
-      level: K3
       answers:
         - b
     - id: 23
-      level: K3
       answers:
         - c
     - id: 24
-      level: K2
       answers:
         - b
     - id: 25
-      level: K2
       answers:
         - c
     - id: 26
-      level: K2
       answers:
         - a
         - e
     - id: 27
-      level: K2
       answers:
         - d
     - id: 28
-      level: K2
       answers:
         - b
     - id: 29
-      level: K3
       answers:
         - d
     - id: 30
-      level: K2
       answers:
         - a
     - id: 31
-      level: K3
       answers:
         - b
     - id: 32
-      level: K3
       answers:
         - b
     - id: 33
-      level: K2
       answers:
         - d
     - id: 34
-      level: K2
       answers:
         - c
     - id: 35
-      level: K1
       answers:
         - a
     - id: 36
-      level: K2
       answers:
         - a
     - id: 37
-      level: K2
       answers:
         - a
     - id: 38
-      level: K3
       answers:
         - b
     - id: 39
-      level: K2
       answers:
         - c
     - id: 40
-      level: K1
       answers:
         - a
 - name: C
   questions:
     - id: 1
-      level: K1
       answers:
         - b
     - id: 2
-      level: K2
       answers:
         - c
     - id: 3
-      level: K2
       answers:
         - b
     - id: 4
-      level: K2
       answers:
         - b
         - e
     - id: 5
-      level: K2
       answers:
         - a
     - id: 6
-      level: K2
       answers:
         - c
     - id: 7
-      level: K1
       answers:
         - b
     - id: 8
-      level: K2
       answers:
         - a
     - id: 9
-      level: K1
       answers:
         - d
     - id: 10
-      level: K1
       answers:
         - d
     - id: 11
-      level: K2
       answers:
         - b
     - id: 12
-      level: K2
       answers:
         - c
     - id: 13
-      level: K2
       answers:
         - d
     - id: 14
-      level: K2
       answers:
         - b
     - id: 15
-      level: K2
       answers:
         - d
     - id: 16
-      level: K1
       answers:
         - a
     - id: 17
-      level: K2
       answers:
         - b
     - id: 18
-      level: K1
       answers:
         - b
     - id: 19
-      level: K2
       answers:
         - c
     - id: 20
-      level: K3
       answers:
         - a
     - id: 21
-      level: K3
       answers:
         - d
     - id: 22
-      level: K3
       answers:
         - d
     - id: 23
-      level: K3
       answers:
         - a
     - id: 24
-      level: K2
       answers:
         - c
     - id: 25
-      level: K2
       answers:
         - a
     - id: 26
-      level: K2
       answers:
         - b
     - id: 27
-      level: K2
       answers:
         - d
     - id: 28
-      level: K2
       answers:
         - b
     - id: 29
-      level: K3
       answers:
         - d
     - id: 30
-      level: K2
       answers:
         - a
     - id: 31
-      level: K3
       answers:
         - c
     - id: 32
-      level: K3
       answers:
         - a
     - id: 33
-      level: K1
       answers:
         - b
     - id: 34
-      level: K2
       answers:
         - d
     - id: 35
-      level: K2
       answers:
         - c
     - id: 36
-      level: K2
       answers:
         - b
     - id: 37
-      level: K2
       answers:
         - d
     - id: 38
-      level: K3
       answers:
         - b
     - id: 39
-      level: K2
       answers:
         - d
     - id: 40
-      level: K1
       answers:
         - d
 - name: D
   questions:
     - id: 1
-      level: K1
       answers:
         - d
     - id: 2
-      level: K2
       answers:
         - c
     - id: 3
-      level: K2
       answers:
         - a
     - id: 4
-      level: K2
       answers:
         - b
     - id: 5
-      level: K2
       answers:
         - a
     - id: 6
-      level: K2
       answers:
         - d
     - id: 7
-      level: K1
       answers:
         - a
     - id: 8
-      level: K2
       answers:
         - b
     - id: 9
-      level: K1
       answers:
         - a
     - id: 10
-      level: K1
       answers:
         - a
     - id: 11
-      level: K2
       answers:
         - d
     - id: 12
-      level: K2
       answers:
         - b
     - id: 13
-      level: K2
       answers:
         - a
     - id: 14
-      level: K2
       answers:
         - b
     - id: 15
-      level: K1
       answers:
         - c
     - id: 16
-      level: K2
       answers:
         - c
     - id: 17
-      level: K2
       answers:
         - b
     - id: 18
-      level: K1
       answers:
         - b
     - id: 19
-      level: K2
       answers:
         - b
     - id: 20
-      level: K3
       answers:
         - b
         - e
     - id: 21
-      level: K3
       answers:
         - c
     - id: 22
-      level: K3
       answers:
         - a
     - id: 23
-      level: K3
       answers:
         - b
     - id: 24
-      level: K2
       answers:
         - c
     - id: 25
-      level: K2
       answers:
         - a
     - id: 26
-      level: K2
       answers:
         - c
     - id: 27
-      level: K2
       answers:
         - d
     - id: 28
-      level: K2
       answers:
         - d
     - id: 29
-      level: K3
       answers:
         - a
     - id: 30
-      level: K2
       answers:
         - b
         - d
     - id: 31
-      level: K3
       answers:
         - a
     - id: 32
-      level: K3
       answers:
         - b
     - id: 33
-      level: K2
       answers:
         - c
     - id: 34
-      level: K1
       answers:
         - b
     - id: 35
-      level: K2
       answers:
         - b
         - e
     - id: 36
-      level: K2
       answers:
         - c
     - id: 37
-      level: K2
       answers:
         - d
     - id: 38
-      level: K3
       answers:
         - a
     - id: 39
-      level: K2
       answers:
         - b
     - id: 40
-      level: K1
       answers:
         - c
