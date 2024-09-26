@@ -1,4 +1,4 @@
-package com.kensscott.istqb;
+package com.kensscott.istqb.exam;
 
 import lombok.*;
 

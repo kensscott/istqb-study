@@ -1,11 +1,12 @@
 package com.kensscott.istqb;
 
+import com.kensscott.istqb.exam.Option;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static com.kensscott.istqb.Option.fromString;
+import static com.kensscott.istqb.exam.Option.fromString;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OptionTest {
