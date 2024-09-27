@@ -1,11 +1,13 @@
 package com.kensscott.istqb;
 
 import com.beust.jcommander.IParameterValidator;
+import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.kensscott.istqb.exam.Exam;
 import com.kensscott.istqb.exam.Question;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
@@ -15,7 +17,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Data
+@RequiredArgsConstructor
 public class ExamArgs {
+
+    private final ExamSelector examSelector;
 
     @Parameter(
             names = { "--source", "-s" },
@@ -42,8 +47,6 @@ public class ExamArgs {
             order = 2)
     private boolean helpParam;
 
-    private static List<Exam> exams;
-
     public static class SourceValidation implements IParameterValidator {
         @Override
         public void validate(String name, String value) throws ParameterException {
@@ -51,6 +54,7 @@ public class ExamArgs {
                 if (!List.of("istqb", "astqb").contains(value.toLowerCase())) {
                     throw new ParameterException("Invalid value for the exam source. (ISTQB|ASTQB)");
                 }
+
                 exams = readExams(value);
             }
         }
@@ -60,8 +64,10 @@ public class ExamArgs {
         @Override
         public void validate(String name, String value) throws ParameterException {
             if (name.equals("--exam") || name.equals("-e")) {
-                if (!List.of("istqb", "astqb").contains(value.toLowerCase())) {
-                    throw new ParameterException("Invalid value for the exam source. (ISTQB|ASTQB)");
+                for (Exam exam : exams) {
+                    if (exam.getName().equalsIgnoreCase(value)) {
+                        selectedExam = exam;
+                    }
                 }
             }
         }
