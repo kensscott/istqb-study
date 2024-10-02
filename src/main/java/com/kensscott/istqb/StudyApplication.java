@@ -4,22 +4,45 @@ import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import com.kensscott.istqb.exam.Exam;
+import com.kensscott.istqb.exam.Question;
 import com.kensscott.istqb.exam.Result;
+import lombok.RequiredArgsConstructor;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class StudyApplication implements Runnable, IParameterValidator {
+@RequiredArgsConstructor
+public class StudyApplication implements Runnable {
 
-    private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+    private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+    private static final ExamArguments EXAM_ARGUMENTS = new ExamArguments();
+
+    private final String style;
+    private final String examName;
 
     public static void main(String[] args) {
+        final JCommander examCommand = JCommander
+                .newBuilder()
+                .addObject(EXAM_ARGUMENTS)
+                .build();
         try {
-            StudyApplication app = new StudyApplication();
+            examCommand.parse(args);
+        } catch (final ParameterException e) {
+            System.err.println(" * " + e.getMessage() + "\n");
+        }
+
+        StudyApplication app = new StudyApplication(EXAM_ARGUMENTS.getStyleParam(), EXAM_ARGUMENTS.getExamParam());
+
+        try {
             Thread examiner = new Thread(app);
             examiner.start();
             examiner.join();
@@ -29,29 +52,42 @@ public class StudyApplication implements Runnable, IParameterValidator {
     }
 
     public void run() {
-        final ExamArgs examArgs = new ExamArgs(this);
-        final JCommander examCommand = JCommander
-                .newBuilder()
-                .addObject(examArgs)
-                .build();
-        try {
-            examCommand.parse(args);
-        } catch (final ParameterException e) {
-            System.err.println(" * " + e.getMessage() + "\n");
+        final List<Exam> exams = readExams();
+        for (final Exam exam : exams) {
+            if (exam.getName().equals(this.examName)) {
+                try {
+                    Result result = this.processTest(exam);
+                } catch (IOException e) {
+                    throw new RuntimeException("Failed to process the test " + exam.getName(), e);
+                }
+            }
         }
-
-
     }
 
-    @Override
-    public void validate(String name, String value) throws ParameterException {
-        if (name.equals("--source") || name.equals("-s")) {
-            if (!List.of("istqb", "astqb").contains(value.toLowerCase())) {
-                throw new ParameterException("Invalid value for the exam source. (ISTQB|ASTQB)");
-            }
+    private List<Exam> readExams() {
+        final String resourceName = "exams-" + this.style + ".yml";
+        final Yaml yaml = new Yaml();
+        InputStream fis = StudyApplication.class.getClassLoader().getResourceAsStream(resourceName);
+        List<Map<String, Object>> raw = yaml.load(fis);
+        return mapToExams(raw);
+    }
 
-            exams = readExams(value);
+
+    private List<Exam> mapToExams(List<Map<String, Object>> raw) {
+        final List<Exam> exams = new ArrayList<>();
+        for (Map<String, Object> map : raw) {
+            final String name = (String) map.get("name");
+            @SuppressWarnings({"unchecked", "rawtypes"})
+            List<Question> questions = ((List<Map>) map.get("questions")).stream()
+                    .map(q -> Question.builder()
+                            .id((Integer) q.get("id"))
+                            .level((String) q.get("level"))
+                            .answers(((List<String>) q.get("answers")).stream().map(a -> com.kensscott.istqb.exam.Option.valueOf(a.trim().toUpperCase())).collect(Collectors.toList()))
+                            .build())
+                    .collect(Collectors.toList());
+            exams.add(Exam.builder().name(name).questions(questions).build());
         }
+        return exams;
     }
 
     private Result processTest(Exam exam) throws IOException {
@@ -83,27 +119,27 @@ public class StudyApplication implements Runnable, IParameterValidator {
         return result;
     }
 
-    private Exam startTest(List<Exam> exams) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        boolean quit = false;
-        while (!quit) {
-            exams.forEach(exam -> System.out.println(exam.getName()));
-            System.out.print("Select an exam to take. X to exit -> ");
-            final String response = reader.readLine().trim().toLowerCase();
-            if (response.equals("x")) {
-                System.out.println("\nQuitting");
-                quit = true;
-                continue;
-            }
-            for (Exam e : exams) {
-                if (e.getName().toLowerCase().equals(response)) {
-                    return e;
-                }
-            }
-            System.out.println("\nInvalid entry. Try again.");
-        }
-        return null;
-    }
+//    private Exam startTest(List<Exam> exams) throws IOException {
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//        boolean quit = false;
+//        while (!quit) {
+//            exams.forEach(exam -> System.out.println(exam.getName()));
+//            System.out.print("Select an exam to take. X to exit -> ");
+//            final String response = reader.readLine().trim().toLowerCase();
+//            if (response.equals("x")) {
+//                System.out.println("\nQuitting");
+//                quit = true;
+//                continue;
+//            }
+//            for (Exam e : exams) {
+//                if (e.getName().toLowerCase().equals(response)) {
+//                    return e;
+//                }
+//            }
+//            System.out.println("\nInvalid entry. Try again.");
+//        }
+//        return null;
+//    }
 
 
 }
