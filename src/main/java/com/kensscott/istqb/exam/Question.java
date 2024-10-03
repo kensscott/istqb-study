@@ -10,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Question {
     private final int id;
-    private final String level;
     private final List<Option> answers;
     private final List<Option> guessed = new ArrayList<>();
 
