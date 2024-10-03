@@ -9,10 +9,8 @@ import com.kensscott.istqb.exam.Result;
 import lombok.RequiredArgsConstructor;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +54,15 @@ public class StudyApplication implements Runnable {
         for (final Exam exam : exams) {
             if (exam.getName().equals(this.examName)) {
                 try {
-                    Result result = this.processTest(exam);
+                    final String resultFile = "result-exam"
+                            + exam.getName()
+                            + "-"
+                            + SIMPLE_DATE_FORMAT.format(new Timestamp(System.currentTimeMillis()))
+                            + ".txt";
+                    final Result result = this.processTest(exam);
+                    final BufferedWriter out = new BufferedWriter(new FileWriter(resultFile));
+                    out.write(result.toString());
+                    out.close();
                 } catch (IOException e) {
                     throw new RuntimeException("Failed to process the test " + exam.getName(), e);
                 }
