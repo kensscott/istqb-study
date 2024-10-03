@@ -109,7 +109,7 @@ public class StudyApplication implements Runnable {
                         + ((optionLimit == 1) ? "" : which)
                         + "selection for question "
                         + question.getId()
-                        + ": ");
+                        + " (or - to go back to previous question): ");
                 try {
                     final String response = reader.readLine().trim().toUpperCase();
                     if (response.equals("-")) {
