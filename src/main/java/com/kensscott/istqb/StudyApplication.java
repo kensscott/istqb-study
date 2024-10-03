@@ -1,6 +1,5 @@
 package com.kensscott.istqb;
 
-import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import com.kensscott.istqb.exam.Exam;
@@ -87,7 +86,6 @@ public class StudyApplication implements Runnable {
             List<Question> questions = ((List<Map>) map.get("questions")).stream()
                     .map(q -> Question.builder()
                             .id((Integer) q.get("id"))
-                            .level((String) q.get("level"))
                             .answers(((List<String>) q.get("answers")).stream().map(a -> com.kensscott.istqb.exam.Option.valueOf(a.trim().toUpperCase())).collect(Collectors.toList()))
                             .build())
                     .collect(Collectors.toList());
@@ -102,10 +100,11 @@ public class StudyApplication implements Runnable {
         System.out.println("Taking test " + exam.getName() + ". Press Enter key to begin...");
         reader.readLine();
         result.start();
-        exam.getQuestions().forEach(question -> {
+        for (int index = 0; index < exam.getQuestions().size(); index++) {
+            final Question question = exam.getQuestions().get(index);
             int optionLimit = question.getAnswers().size();
-            IntStream.range(0, optionLimit).forEach(index -> {
-                final String which = ((index == 0) ? "first " : "second ");
+            for (int optionNum = 0; optionNum < optionLimit; optionNum++) {
+                final String which = ((optionNum == 0) ? "first " : "second ");
                 System.out.print("Enter "
                         + ((optionLimit == 1) ? "" : which)
                         + "selection for question "
@@ -113,39 +112,20 @@ public class StudyApplication implements Runnable {
                         + ": ");
                 try {
                     final String response = reader.readLine().trim().toUpperCase();
+                    if (response.equals("-")) {
+                        index -= 2;
+                        break;
+                    }
                     if (!response.isEmpty()) {
                         result.recordSelection(question.getId(), com.kensscott.istqb.exam.Option.valueOf(response.charAt(0)));
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            });
-        });
+            }
+        }
         result.stop();
         return result;
     }
-
-//    private Exam startTest(List<Exam> exams) throws IOException {
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//        boolean quit = false;
-//        while (!quit) {
-//            exams.forEach(exam -> System.out.println(exam.getName()));
-//            System.out.print("Select an exam to take. X to exit -> ");
-//            final String response = reader.readLine().trim().toLowerCase();
-//            if (response.equals("x")) {
-//                System.out.println("\nQuitting");
-//                quit = true;
-//                continue;
-//            }
-//            for (Exam e : exams) {
-//                if (e.getName().toLowerCase().equals(response)) {
-//                    return e;
-//                }
-//            }
-//            System.out.println("\nInvalid entry. Try again.");
-//        }
-//        return null;
-//    }
-
 
 }
