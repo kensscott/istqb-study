@@ -1,0 +1,43 @@
+Exam Sample 3
+Question 01: [C]         ([C]       ) PASS
+Question 02: [B]         ([B]       ) PASS
+Question 03: [A]         ([A]       ) PASS
+Question 04: [D]         ([D]       ) PASS
+Question 05: [B]         ([D]       ) INCORRECT => Should have been obvious, but risky. What is a test control activity.
+Question 06: [A]         ([A]       ) PASS
+Question 07: [A]         ([B]       ) INCORRECT => Obvious, didn't trust myself and too biased toward automation.
+Question 08: [C]         ([C]       ) PASS
+Question 09: [D]         ([D]       ) PASS
+Question 10: [A]         ([A]       ) PASS
+Question 11: [D]         ([D]       ) PASS
+Question 12: [D]         ([C]       ) INCORRECT => Read closer, wasn't the obvious and I knew that, but I figured patches may still be needed. I got locked on and didn't consider the correct answer
+Question 13: [A]         ([A]       ) PASS
+Question 14: [C]         ([C]       ) PASS
+Question 15: [C]         ([C]       ) PASS
+Question 16: [B]         ([B]       ) PASS
+Question 17: [A]         ([A]       ) PASS
+Question 18: [A]         ([A]       ) PASS
+Question 19: [B]         ([B]       ) PASS
+Question 20: [B]         ([B]       ) PASS
+Question 21: [B]         ([B]       ) PASS
+Question 22: [B]         ([A]       ) INCORRECT => Didn't read closely enough. Answers are too vague, but a closer reading would have bubbled up the right answer.`
+Question 23: [A]         ([A]       ) PASS
+Question 24: [B]         ([B]       ) PASS
+Question 25: [A]         ([B]       ) INCORRECT => Didn't include the outside values.
+Question 26: [C]         ([C]       ) PASS
+Question 27: [B]         ([C]       ) INCORRECT => Too complex. Should have saved this until the end. I'm okay missing this. Filling out the table worked because I knew the target answer.
+Question 28: [C]         ([B]       ) INCORRECT => Didn't read and consider well enough. Distracted during test. Also didn't go with gut.
+Question 29: [A]         ([A]       ) PASS
+Question 30: [C]         ([C]       ) PASS
+Question 31: [B]         ([A]       ) INCORRECT => Didn't go with my gut.
+Question 32: [A]         ([A]       ) PASS
+Question 33: [D]         ([D]       ) PASS
+Question 34: [C]         ([C]       ) PASS
+Question 35: [A]         ([A]       ) PASS
+Question 36: [D]         ([D]       ) PASS
+Question 37: [D]         ([A]       ) INCORRECT => Didn't read closely enough. I lost sight or risk in the dependencies.
+Question 38: [A]         ([D]       ) INCORRECT => Judgement call (correct answer took the implied lower priority due to crash conditions, I gave it high because it's a system crash. 
+Question 39: [A]         ([A]       ) PASS
+Question 40: [A]         ([A]       ) PASS
+Total correct: 30.0 / 40.0 = 75.0%
+Time taken: 38m 35.238s
