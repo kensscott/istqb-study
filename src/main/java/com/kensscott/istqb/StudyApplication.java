@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
 public class StudyApplication implements Runnable {
@@ -37,6 +36,10 @@ public class StudyApplication implements Runnable {
             System.err.println(" * " + e.getMessage() + "\n");
         }
 
+        if (EXAM_ARGUMENTS.isHelpParam()) {
+            examCommand.usage();
+            System.exit(0);
+        }
         StudyApplication app = new StudyApplication(EXAM_ARGUMENTS.getStyleParam(), EXAM_ARGUMENTS.getExamParam());
 
         try {
