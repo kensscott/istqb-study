@@ -15,7 +15,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>11</java.version>
+        <maven.compiler.proc>full</maven.compiler.proc>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jacoco-maven-plugin.complexity.minimum>0.43</jacoco-maven-plugin.complexity.minimum>
         <artifactory.publish-artifacts>false</artifactory.publish-artifacts>
@@ -84,6 +85,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
