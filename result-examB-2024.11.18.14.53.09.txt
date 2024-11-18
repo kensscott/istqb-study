@@ -5,11 +5,11 @@ Question 03: [D]         ([D]       ) PASS
 Question 04: [B]         ([A]       ) INCORRECT
 Question 05: [C]         ([C]       ) PASS
 Question 06: [B]         ([B]       ) PASS
-Question 07: []          ([B]       ) INCORRECT
+Question 07: [B]         ([B]       ) PASS
 Question 08: [D]         ([D]       ) PASS
 Question 09: [B]         ([B]       ) PASS
-Question 10: []          ([B]       ) INCORRECT
-Question 11: []          ([A]       ) INCORRECT
+Question 10: [B]         ([B]       ) PASS
+Question 11: [A]         ([A]       ) PASS
 Question 12: [B]         ([B]       ) PASS
 Question 13: [B]         ([A]       ) INCORRECT
 Question 14: [D]         ([D]       ) PASS
@@ -20,7 +20,7 @@ Question 18: [C]         ([C]       ) PASS
 Question 19: [C]         ([D]       ) INCORRECT
 Question 20: [D]         ([A]       ) INCORRECT
 Question 21: [C]         ([D]       ) INCORRECT
-Question 22: []          ([B]       ) INCORRECT
+Question 22: [B]         ([B]       ) PASS
 Question 23: [C]         ([C]       ) PASS
 Question 24: [B]         ([B]       ) PASS
 Question 25: [C]         ([C]       ) PASS
@@ -39,5 +39,5 @@ Question 37: [A]         ([A]       ) PASS
 Question 38: [B]         ([B]       ) PASS
 Question 39: [C]         ([C]       ) PASS
 Question 40: [A]         ([A]       ) PASS
-Total correct: 25.0 / 40.0 = 62.5%
+Total correct: 29.0 / 40.0 = 72.5%
 Time taken: 57m 6.006s
