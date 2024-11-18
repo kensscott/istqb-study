@@ -54,7 +54,7 @@ public class StudyApplication implements Runnable {
     public void run() {
         final List<Exam> exams = readExams();
         for (final Exam exam : exams) {
-            if (exam.getName().equals(this.examName)) {
+            if (exam.getName().equalsIgnoreCase(this.examName)) {
                 try {
                     final String resultFile = "result-exam"
                             + exam.getName()
