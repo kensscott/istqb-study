@@ -1,0 +1,43 @@
+Exam Sample 3
+Question 01: [A]         ([C]       ) INCORRECT
+Question 02: [B]         ([B]       ) PASS
+Question 03: [A]         ([A]       ) PASS
+Question 04: [D]         ([D]       ) PASS
+Question 05: [B]         ([D]       ) INCORRECT
+Question 06: [A]         ([A]       ) PASS
+Question 07: [B]         ([B]       ) PASS
+Question 08: [C]         ([C]       ) PASS
+Question 09: [D]         ([D]       ) PASS
+Question 10: [A]         ([A]       ) PASS
+Question 11: [A]         ([D]       ) INCORRECT
+Question 12: [A]         ([C]       ) INCORRECT
+Question 13: [A]         ([A]       ) PASS
+Question 14: [B]         ([C]       ) INCORRECT
+Question 15: [C]         ([C]       ) PASS
+Question 16: [B]         ([B]       ) PASS
+Question 17: [A]         ([A]       ) PASS
+Question 18: [A]         ([A]       ) PASS
+Question 19: [B]         ([B]       ) PASS
+Question 20: [B]         ([B]       ) PASS
+Question 21: [B]         ([B]       ) PASS
+Question 22: [C]         ([A]       ) INCORRECT
+Question 23: [A]         ([A]       ) PASS
+Question 24: [B]         ([B]       ) PASS
+Question 25: [A]         ([B]       ) INCORRECT
+Question 26: [C]         ([C]       ) PASS
+Question 27: [C]         ([C]       ) PASS
+Question 28: [C]         ([B]       ) INCORRECT
+Question 29: [A]         ([A]       ) PASS
+Question 30: [D]         ([C]       ) INCORRECT
+Question 31: [B]         ([A]       ) INCORRECT
+Question 32: [C]         ([A]       ) INCORRECT
+Question 33: [C]         ([D]       ) INCORRECT
+Question 34: [C]         ([C]       ) PASS
+Question 35: [A]         ([A]       ) PASS
+Question 36: [D]         ([D]       ) PASS
+Question 37: [A]         ([A]       ) PASS
+Question 38: [D]         ([D]       ) PASS
+Question 39: [A]         ([A]       ) PASS
+Question 40: [A]         ([A]       ) PASS
+Total correct: 28.0 / 40.0 = 70.0%
+Time taken: 29m 1.285s
